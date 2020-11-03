@@ -1,0 +1,38 @@
+/* css reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%; /* ideally this is equals 1rem = 10px */   
+}
+
+body {
+    font-size: 1.6rem;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+header, footer {
+    padding: 1.2em;
+    width: 100vw;
+    height: 2em;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+}
+header nav ul.navabr li {
+    list-style-type: none;
+    float: right;
+    margin-right: 2em;
+}
+#brand_name {
+    font-size: large;
+    font-style: italic;
+    float: left;
+    font-weight: 900;
+}
+.products-listings {
+    margin: 2rem 15rem;
+}
