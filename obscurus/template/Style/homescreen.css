@@ -2,22 +2,23 @@
     display: flex;
     align-items: center;
     justify-content: center;  
-    flex-wrap: wrap;
+    flex-wrap: wrap;    
 }
 
 .products li {
     list-style: none;
     padding: 0;
     flex: 0 1 34rem;
-    margin: 1rem;
+    margin: 1.2rem;
     height: 50rem;
-    border-bottom: 0.1rem solid #c0c0c0;
+    border: 0.1rem solid #c0c0c0;
 }
 
 .product {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: left;
     height: 100%;
 }
 

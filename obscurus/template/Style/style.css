@@ -4,9 +4,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 html {
     font-size: 62.5%; /* this equals 1rem = 10px */   
 }
+
 body {
     font-size: 1.6rem;
     height: 100vh;
@@ -27,12 +29,15 @@ body {
     grid-template-rows: 6rem 1fr auto;
     height: 100vh;
 }
+
 .header {
     grid-area: header;
 }
+
 .main {
     grid-area: main;
 }
+
 .footer {
     grid-area: footer;
     height: 6rem;
@@ -40,31 +45,38 @@ body {
     justify-content: center;
     flex-direction: column;
 }
+
 header, footer {
     padding: 1.2em;   
     text-align: center;
     background-color: #131921;
     color: #fff;
 }
+
 nav {
     display: flex;   
     flex-direction: row; 
-    align-items: center;
+    align-items: end;
     position: relative;
     justify-content: space-between;
+    vertical-align: middle;
 }
+
 .navbar li {    
     display: inline;   
     padding: 0.3em 0.5em;
     margin-right: 2em;
     font-weight: bolder;
 }
+
 a {
     text-decoration: none;
 }
+
 a:hover {
     color: #f9992e;
 }
+
 #brand_name {
     font-size: 2.5rem;
     font-style: italic;    
@@ -72,16 +84,21 @@ a:hover {
     position: absolute;
     left: 2em;
 }
+
 .logo-break {
     display: inline;
     color: #f9992e;
 }
-/* .side-bar {
-    list-style-type: none;
-    padding: 0.3em 0.5em;
-    margin-right: 2em;
-    font-weight: bolder;
-} 
-.products-listings {
-    margin: 2rem 15rem;
-} */
+
+.main {
+    display: grid;
+    grid-template-areas:
+    "left-col"
+    "content"
+    "right-col";
+    grid-template-columns: 1fr;
+}
+
+.content {
+    grid-area: content;
+}

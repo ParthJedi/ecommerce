@@ -4,37 +4,76 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Festrush</title>
-        <link href="../Style/style.css" rel="stylesheet">
-        <link href="../Style/homescreen.css" rel="stylesheet">
-        <link href="../Style/side-bar.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../Style/style.css">
+        <link rel="stylesheet" href="../Style/homescreen.css">
+        <link rel="stylesheet" href="../Style/side-bar.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     </head>
     <body>
         <div class="grid-container">
             <header class="header">
                 <nav>
                     <div class="brand">
-                        <button>
+                        <button onclick="openAsideBar()">
                             &#9776;
                         </button>
                     </div>
                     <div id="brand_name">Fest<span class="logo-break">rush</span></div>
                     <ul class="navbar">
                         <li><a herf="shopping-cart.html" class="btn">Cart</a></li>
-                        <li><a herf="sign-in.html" class="btn">Sign In</a></li>
+                        <li><a herf="sign-in.html" class="btn">
+                            <span class="material-icons">account_circle</span>&nbsp;Sign In</a>
+                        </li>
                     </ul>                    
                 </nav>
             </header>
-            <main class="main">
+            <aside id="mySidebar" class="side-bar">
+                <h3>Check Our Categories</h3>
+                <button class="side-bar-close-btn" onclick="closeAsideBar()">X</button>
+                <ul>
+                    <li><a href="#"><i class="material-icons">face</i><span class="icon-text">Shirt</span></li></a>
+                    <li><a href="#"><i class="material-icons">directions_run</i><span class="icon-text">Pants</span></li></a>
+                    <li><a href="#"><i class="material-icons">do_not_step</i><span class="icon-text">Shoes</span></li></a>
+                </ul>
+            </aside>
+            <main id="main" class="main">
                 <div class="content">
                     <ul class="products">
                         <li>
                             <div class="product">
-                                <img class="product-image" src="../../images/p1.jpg" alt="product">
+                                <img class="product-image" src="../../images/p1.jpg" alt="product">                                
                                 <div class="product-name"><a href="product.html">Om Namah Shivaya</a></div>
                                 <div class="product-brand">Obscurus Apparels</div>
                                 <div class="product-price">$33</div>
-                                <div class="product-ratings">4.4 Stars (11 reviews)</div>
+                                <div class="product-ratings">4.4 Stars (11 reviews)</div>                                
+                            </div>
+                        </li>
+                        <li>
+                            <div class="product">
+                                <img class="product-image" src="../../images/p1.jpg" alt="product">                                
+                                <div class="product-name"><a href="product.html">Om Namah Shivaya</a></div>
+                                <div class="product-brand">Obscurus Apparels</div>
+                                <div class="product-price">$33</div>
+                                <div class="product-ratings">4.4 Stars (11 reviews)</div>                                
+                            </div>
+                        </li>
+                        <li>
+                            <div class="product">
+                                <img class="product-image" src="../../images/p1.jpg" alt="product">                                
+                                <div class="product-name"><a href="product.html">Om Namah Shivaya</a></div>
+                                <div class="product-brand">Obscurus Apparels</div>
+                                <div class="product-price">$33</div>
+                                <div class="product-ratings">4.4 Stars (11 reviews)</div>                                
+                            </div>
+                        </li>                 
+                        <li>
+                            <div class="product">
+                                <img class="product-image" src="../../images/p1.jpg" alt="product">                                
+                                <div class="product-name"><a href="product.html">Om Namah Shivaya</a></div>
+                                <div class="product-brand">Obscurus Apparels</div>
+                                <div class="product-price">$33</div>
+                                <div class="product-ratings">4.4 Stars (11 reviews)</div>                                
                             </div>
                         </li>
                     </ul>
@@ -42,5 +81,6 @@
             </main>
             <footer class="footer"><div>Fest<span class="logo-break">rush</span> &copy; 2020 <br> All Rights Reserved</div></footer>    
         </div>
+        <script type="text/javascript" src="../Scripts/miscellaneous.js"></script>
     </body>
 </html>
