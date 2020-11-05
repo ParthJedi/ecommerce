@@ -1,0 +1,104 @@
+/* css reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; /* this equals 1rem = 10px */   
+}
+
+body {
+    font-size: 1.6rem;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* styling starts */
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    "header"
+    "main"
+    "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: 6rem 1fr auto;
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+}
+
+.main {
+    grid-area: main;
+}
+
+.footer {
+    grid-area: footer;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+header, footer {
+    padding: 1.2em;   
+    text-align: center;
+    background-color: #131921;
+    color: #fff;
+}
+
+nav {
+    display: flex;   
+    flex-direction: row; 
+    align-items: flex-end;
+    position: relative;
+    justify-content: space-between;
+    vertical-align: middle;
+}
+
+.navbar li {    
+    display: inline;   
+    padding: 0.3em 0.5em;
+    margin-right: 2em;
+    font-weight: bolder;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #f9992e;
+}
+
+#brand_name {
+    font-size: 2.5rem;
+    font-style: italic;    
+    font-weight: bold;
+    position: absolute;
+    left: 2em;
+}
+
+.logo-break {
+    display: inline;
+    color: #f9992e;
+}
+
+.main {
+    display: grid;
+    grid-template-areas:
+    "left-col"
+    "content"
+    "right-col";
+    grid-template-columns: 1fr;
+}
+
+.content {
+    grid-area: content;
+}
