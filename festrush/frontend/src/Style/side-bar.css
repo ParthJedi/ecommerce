@@ -21,6 +21,7 @@
     padding-top: 60px;    
     transform: translateX(-30rem);
     text-align: center;
+    transition: all 0.7s;
 }
 
 .side-bar ul li {

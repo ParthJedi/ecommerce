@@ -1,15 +1,23 @@
 import './Style/style.css';
 import './Style/homescreen.css';
 import './Style/side-bar.css';
-import product_image from './images/p2.jpg';
 
 function App() {
+
+  const openAsideBar = () => {
+    document.querySelector('.side-bar').classList.add('open');
+  };
+
+  const closeAsideBar = () => {
+    document.querySelector('.side-bar').classList.remove('open');
+  };
+
   return (
     <div class="grid-container">
         <header class="header">
           <nav>
               <div class="brand">
-                  <button onclick="openAsideBar()">
+                  <button onClick={openAsideBar}>
                       &#9776;
                   </button>
               </div>
@@ -24,7 +32,7 @@ function App() {
         </header>
         <aside id="mySidebar" class="side-bar">
             <h3>Check Our Categories</h3>
-            <button class="side-bar-close-btn" onclick="closeAsideBar()">X</button>
+            <button class="side-bar-close-btn" onClick={closeAsideBar}>X</button>
             <ul>
                 <li><a href="#"><i class="material-icons">face</i><span class="icon-text">Shirt</span></a></li>
                 <li><a href="#"><i class="material-icons">directions_run</i><span class="icon-text">Pants</span></a></li>
@@ -36,7 +44,7 @@ function App() {
             <ul class="products">
               <li>
                   <div class="product">
-                      <img class="product-image" src={product_image} alt="product" />                                
+                      <img class="product-image" src='/images/p2.jpg' alt="product" />                                
                       <div class="product-name"><a href="product.html">Om Namo Shivaya</a></div>
                       <div class="product-brand">Obscurus Apparels</div>
                       <div class="product-price">$33</div>
@@ -45,7 +53,7 @@ function App() {
               </li>
               <li>
                   <div class="product">
-                      <img class="product-image" src={product_image} alt="product" />                                
+                      <img class="product-image" src='/images/p2.jpg' alt="product" />                                
                       <div class="product-name"><a href="product.html">Om Namah Shivaya</a></div>
                       <div class="product-brand">Obscurus Apparels</div>
                       <div class="product-price">$33</div>
@@ -54,7 +62,7 @@ function App() {
               </li>
               <li>
                   <div class="product">
-                      <img class="product-image" src={product_image} alt="product" />                                
+                      <img class="product-image" src='/images/p2.jpg' alt="product" />                                
                       <div class="product-name"><a href="product.html">Om Namah Shivaya</a></div>
                       <div class="product-brand">Obscurus Apparels</div>
                       <div class="product-price">$33</div>
@@ -63,7 +71,7 @@ function App() {
               </li>                 
               <li>
                   <div class="product">
-                      <img class="product-image" src={product_image} alt="product" />                                
+                      <img class="product-image" src='/images/p2.jpg' alt="product" />                                
                       <div class="product-name"><a href="product.html">Om Namah Shivaya</a></div>
                       <div class="product-brand">Obscurus Apparels</div>
                       <div class="product-price">$33</div>

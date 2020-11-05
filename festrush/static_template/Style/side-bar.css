@@ -10,7 +10,7 @@
     color: #f9992e ;
 }
 
-.side-bar {
+.side-bar {    
     height: 100%;
     width: 30rem;
     position: fixed;
@@ -21,6 +21,7 @@
     padding-top: 60px;    
     transform: translateX(-30rem);
     text-align: center;
+    transition: all 5s;
 }
 
 .side-bar ul li {
