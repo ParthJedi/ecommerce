@@ -1,72 +1,63 @@
 import './Style/style.css';
 import './Style/homescreen.css';
 import './Style/side-bar.css';
-import data from './data';
+import React from 'react';
+import HomeScreen from './Screens/HomeScreen';
+import ProductScreen from './Screens/ProductScreen';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 
 function App() {
 
   const openAsideBar = () => {
-    document.querySelector('.side-bar').classList.add('open');
+    document.querySelector('.side-bar').classNameList.add('open');
   };
 
   const closeAsideBar = () => {
-    document.querySelector('.side-bar').classList.remove('open');
+    document.querySelector('.side-bar').classNameList.remove('open');
   };
 
   return (
-    <div class="grid-container">
-      <header class="header">
-        <nav>
-          <div class="brand">
-            <button onClick={openAsideBar}>
-              &#9776;
-                  </button>
+    <BrowserRouter>
+      <div className="grid-container">
+        <header className="header">
+          <nav>
+            <div className="brand">
+              <button onClick={openAsideBar}>
+                &#9776;
+                    </button>
+            </div>
+            
+              <div id="brand_name"><Link to="/">Fest<span className="logo-break">rush</span></Link></div>
+            
+            <ul className="navbar">
+              <li><Link to="shopping-cart.html" className="btn">Cart</Link></li>
+              <li><Link to="sign-in.html" className="btn">
+                <span className="material-icons">account_circle</span>&nbsp;Sign In</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <aside id="mySidebar" className="side-bar">
+          <h3>Check Our Categories</h3>
+          <button className="side-bar-close-btn" onClick={closeAsideBar}>X</button>
+          <ul>
+            <li><Link to="#"><i className="material-icons">face</i><span className="icon-text">Shirt</span></Link></li>
+            <li><Link to="#"><i className="material-icons">directions_run</i><span className="icon-text">Pants</span></Link></li>
+            <li><Link to="#"><i className="material-icons">do_not_step</i><span className="icon-text">Shoes</span></Link></li>
+          </ul>
+        </aside>
+        <main id="main" className="main">        
+          <div className="content">
+            <Route path="/" exact={true} component={HomeScreen} />
+            <Route path="/product/:id" exact={true} component={ProductScreen} />      
           </div>
-          <div id="brand_name">Fest<span class="logo-break">rush</span></div>
-          <ul class="navbar">
-            <li><a herf="shopping-cart.html" class="btn">Cart</a></li>
-            <li><a herf="sign-in.html" class="btn">
-              <span class="material-icons">account_circle</span>&nbsp;Sign In</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <aside id="mySidebar" class="side-bar">
-        <h3>Check Our Categories</h3>
-        <button class="side-bar-close-btn" onClick={closeAsideBar}>X</button>
-        <ul>
-          <li><a href="#"><i class="material-icons">face</i><span class="icon-text">Shirt</span></a></li>
-          <li><a href="#"><i class="material-icons">directions_run</i><span class="icon-text">Pants</span></a></li>
-          <li><a href="#"><i class="material-icons">do_not_step</i><span class="icon-text">Shoes</span></a></li>
-        </ul>
-      </aside>
-      <main id="main" class="main">
-        <div class="content">
-          <ul class="products">
-            {
-              data.products.map(product => {
-                return (
-                  <li>
-                    <div class="product">
-                      <img class="product-image" src={product.image} alt="product" />
-                      <div class="product-name"><a href="product.html">{product.name}</a></div>
-                      <div class="product-brand">{product.brand}</div>
-                      <div class="product-price">${product.price}</div>
-                      <div class="product-ratings">{product.rating} Stars (from {product.reviewsCount} reviews)</div>
-                    </div>
-                  </li>
-                );
-              })
-            }
-
-          </ul>
-        </div>
-      </main>
-      <footer class="footer">
-        <div>Fest<span class="logo-break">rush</span> &copy; 2020 <br /> All Rights Reserved</div>
-      </footer>
-    </div>
+        </main>
+        <footer className="footer">
+          <div>Fest<span className="logo-break">rush</span> &copy; 2020 <br /> All Rights Reserved</div>
+        </footer>
+      </div>
+    </BrowserRouter>
   );
 }
 

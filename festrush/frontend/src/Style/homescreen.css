@@ -28,8 +28,17 @@
 }
 
 .product-name {
+    color: inherit;
     font-size: 2rem;
     font-weight: bold;  
+}
+
+.product-name a {
+    color: inherit;
+}
+
+.product-name a:hover {
+    color: #f9992e;
 }
 
 .product-brand {

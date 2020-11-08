@@ -69,7 +69,11 @@ nav {
     font-weight: bolder;
 }
 
-a {
+Link, a {
+    color: #fff;
+}
+
+a, Link {
     text-decoration: none;
 }
 
