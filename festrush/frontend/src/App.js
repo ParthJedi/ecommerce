@@ -1,5 +1,5 @@
 import './Style/style.css';
-import './Style/homescreen.css';
+import './Style/productscreen.css';
 import './Style/side-bar.css';
 import React from 'react';
 import HomeScreen from './Screens/HomeScreen';
