@@ -1,9 +1,9 @@
-import './Style/style.css';
-import './Style/productscreen.css';
-import './Style/side-bar.css';
+import './style/style.css';
+import './style/productscreen.css';
+import './style/side-bar.css';
 import React from 'react';
-import HomeScreen from './Screens/HomeScreen';
-import ProductScreen from './Screens/ProductScreen';
+import HomeScreen from './screens/HomeScreen';
+import ProductScreen from './screens/ProductScreen';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
 

@@ -7,13 +7,11 @@ function HomeScreen(props) {
   useEffect(() => {
     const fetchData = async () => {
       const {data} = await axios.get("/api/products");
-      setProducts(data);      
+      setProducts(data);
     }
     fetchData();
     return () => {};
   }, []);
-
-  console.log(products);
 
     return <div>
         <ul className="products">
