@@ -1,14 +1,36 @@
-import React from 'react';
-import data from '../data';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { detailsOfProduct } from '../actions/productActions';
 
-function ProductScreen(props) {    
-    const product = data.products.find(item => String(item._id) === props.match.params.id);
+function ProductScreen(props) {   
+
+    const [qty, setQty] = useState(1);
+    const productDetails = useSelector(state => state.productDetails);
+    const { product, loading, error } = productDetails;
+
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        dispatch(detailsOfProduct(props.match.params.id));
+        return () => {
+            //
+        }
+    }, [])
+
+    const eventHendlerForAddToCart = () => {
+        props.history.push("/cart/" + props.match.params.id + "?qty=" + qty);
+    }
+
     return <div>
                 <div className="go-back-link">
                     <Link to="/">&lt;&lt; Go Back</Link>
                 </div>
-                <div className="product-details">                        
+                {
+                    loading ? <div>In progress...</div> :
+                    error ? <div>{error}</div> :
+                    (<div className="product-details">
                     <div className="pd-image">
                         <Link to={'/product/' + product._id}>
                             <img src={product.image} alt="product" />
@@ -40,21 +62,25 @@ function ProductScreen(props) {
                                 Price: {product.price}
                             </li>
                             <li>
-                                Status: {product.status}
+                                Status: {product.leftInStock > 0 ? "In stock" : "Out of stock"}
+                            </li>
+                            <li>                                
+                                Quantity: {product.leftInStock > 0 ? 
+                                <select value={qty} onChange={(e) => setQty(e.target.value) }>
+                                    {
+                                    [...Array(product.leftInStock).keys()].map(i => 
+                                        <option key={i+1} value={i+1}>{i+1}</option>)
+                                    }
+                                </select>
+                                : "Unavailable"}                             
                             </li>
                             <li>
-                                Quantity: 
-                                    <select>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
+                                { product.leftInStock>0 && <button onClick={eventHendlerForAddToCart} className="pd-button primary">Add to Cart</button> }                                
                             </li>
-                            <li><button className="pd-button primary">Add to Cart</button></li>
                         </ul>
                     </div>
-                </div>
+                </div>)
+                }                
             </div>
         
 }

@@ -7,7 +7,7 @@
 
 .products li {
     list-style: none;
-    padding: 0;
+    padding: 1em;
     flex: 0 1 34rem;
     margin: 1.2rem;
     height: 50rem;
@@ -99,8 +99,7 @@
     font-weight: bold;    
 }
 
-.pd-info ul, .pd-action ul {
-    
+.pd-info ul, .pd-action ul {    
     list-style: none;
     padding: 0;
 }

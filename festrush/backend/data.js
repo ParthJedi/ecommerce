@@ -7,7 +7,8 @@ const data = {
             brand: 'obscurus apparels',
             price: 33,
             rating: 4.2,
-            reviewsCount: 5
+            reviewsCount: 5,
+            leftInStock: 10
         },
         {
             _id: 2,
@@ -16,7 +17,8 @@ const data = {
             brand: 'obscurus apparels',
             price: 33,
             rating: 4.2,
-            reviewsCount: 5
+            reviewsCount: 5,
+            leftInStock: 10
         },
         {
             _id: 3,
@@ -25,7 +27,8 @@ const data = {
             brand: 'obscurus apparels',
             price: 33,
             rating: 4.2,
-            reviewsCount: 5
+            reviewsCount: 5,
+            leftInStock: 0
         },
         {
             _id: 4,
@@ -34,7 +37,8 @@ const data = {
             brand: 'obscurus apparels',
             price: 33,
             rating: 4.2,
-            reviewsCount: 5
+            reviewsCount: 5,
+            leftInStock: 10
         }
     ]
 }

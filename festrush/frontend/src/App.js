@@ -4,17 +4,18 @@ import './style/side-bar.css';
 import React from 'react';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
+import CartScreen from './screens/CartScreen';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
 
 function App() {
 
   const openAsideBar = () => {
-    document.querySelector('.side-bar').classNameList.add('open');
+    document.querySelector('.side-bar').classList.add('open');
   };
 
   const closeAsideBar = () => {
-    document.querySelector('.side-bar').classNameList.remove('open');
+    document.querySelector('.side-bar').classList.remove('open');
   };
 
   return (
@@ -31,7 +32,7 @@ function App() {
               <div id="brand_name"><Link to="/">Fest<span className="logo-break">rush</span></Link></div>
             
             <ul className="navbar">
-              <li><Link to="shopping-cart.html" className="btn">Cart</Link></li>
+              <li><Link to="/cart/" className="btn">Cart</Link></li>
               <li><Link to="sign-in.html" className="btn">
                 <span className="material-icons">account_circle</span>&nbsp;Sign In</Link>
               </li>
@@ -50,7 +51,8 @@ function App() {
         <main id="main" className="main">        
           <div className="content">
             <Route path="/" exact={true} component={HomeScreen} />
-            <Route path="/product/:id" exact={true} component={ProductScreen} />      
+            <Route path="/product/:id" exact={true} component={ProductScreen} />   
+            <Route path="/cart/:id?" exact={true} component={CartScreen} />      
           </div>
         </main>
         <footer className="footer">
