@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
+import { Link } from "react-router-dom";
 
 function CartScreen(props) {    
     const cart = useSelector(state => state.cart);
@@ -9,17 +10,20 @@ function CartScreen(props) {
     const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1;
     const dispatch = useDispatch();
 
+    const removeItemHandler = (productId) => {
+        dispatch(removeFromCart(productId));
+    };
+
     useEffect(() => {
         if (productId) {
-            dispatch(addToCart(productId, qty))
-        }
-        
+            dispatch(addToCart(productId, qty));
+        }        
     }, []);
 
     return <div className="cart">
         <div className="cart-list">
-            <ul className="class-list-container">
-                <li>
+            <ul className="cart-list-container">
+                <li key={Math.random()}>
                     <h3>
                         Shopping Cart
                     </h3>
@@ -27,40 +31,48 @@ function CartScreen(props) {
                         Price
                     </div>
                 </li>
+                
                 {
                     cartItems.length === 0 ?
                     <div>Cart is Empty</div>
                     :                    
                     cartItems.map(item => {
-                        return <div>
-                            <img src={item.image} alt={item.name} />
+                        return <li key={item.product}>
+                            <div className="cart-image">
+                                <img src={item.image} alt={item.name} />
+                            </div>                            
                             <div className="cart-name">
                                 <div>
-                                    {item.name}
+                                    <Link to={"/product/" + item.product }>
+                                        {item.name}
+                                    </Link> 
                                 </div>
                                 <div>
                                     Qty:
-                                    <select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
+                                    <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
+                                        {
+                                            [...Array(item.leftInStock).keys()].map(x => 
+                                                <option key={x +1} value={x+1}>{x+1}</option>
+                                            )
+                                        }                                        
                                     </select>
+                                    <button className="remove-item btn" type="button" onClick={() => removeItemHandler(item.product)}>Remove [X]</button>
                                 </div>
                             </div>
-                            <div>
-                                {item.price}
+                            <div className="cart-price">
+                                ${item.price}
                             </div>
-                        </div>
+                        </li>
                     })
                     
                 }
+                
             </ul>
 
         </div>
         <div className="cart-action">
                 <h3>
-                    Subtotal: {cartItems.reduce((a, c) => a + c.aty, 0) } items 
+                    Subtotal: ({cartItems.reduce((a, c) => a + c.qty, 0) } items)
                     :
                     $ {cartItems.reduce((a,c) => a + (c.price * c.qty), 0) }
                 </h3>
