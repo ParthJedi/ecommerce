@@ -20,6 +20,10 @@ function CartScreen(props) {
         }        
     }, []);
 
+    const checkoutHandler = () => {
+        props.history.push("/signin?redirect=shipping");
+    };
+
     return <div className="cart">
         <div className="cart-list">
             <ul className="cart-list-container">
@@ -34,7 +38,7 @@ function CartScreen(props) {
                 
                 {
                     cartItems.length === 0 ?
-                    <div>Cart is Empty</div>
+                    <div>Cart is Empty. <Link className="info-links" to="/">Continue Shopping..</Link></div>
                     :                    
                     cartItems.map(item => {
                         return <li key={item.product}>
@@ -43,18 +47,16 @@ function CartScreen(props) {
                             </div>                            
                             <div className="cart-name">
                                 <div>
-                                    <Link to={"/product/" + item.product }>
+                                    <Link className="info-links" to={"/product/" + item.product }>
                                         {item.name}
                                     </Link> 
                                 </div>
                                 <div>
                                     Qty:
                                     <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
-                                        {
-                                            [...Array(item.leftInStock).keys()].map(x => 
-                                                <option key={x +1} value={x+1}>{x+1}</option>
-                                            )
-                                        }                                        
+                                        {[...Array(item.leftInStock).keys()].map(x => 
+                                            <option key={x+1} value={x+1}>{x+1}</option>
+                                        )}                                        
                                     </select>
                                     <button className="remove-item btn" type="button" onClick={() => removeItemHandler(item.product)}>Remove [X]</button>
                                 </div>
@@ -76,9 +78,11 @@ function CartScreen(props) {
                     :
                     $ {cartItems.reduce((a,c) => a + (c.price * c.qty), 0) }
                 </h3>
-                <button className="pd-button primary" disabled={cartItems.length === 0}>
+                <button onClick={() => checkoutHandler()} className="pd-button checkout-btn full-width primary" disabled={cartItems.length === 0}>
                     Proceed to Checkout
-                </button>                
+                </button> 
+                <br /><br />
+                <button className="pd-button checkout-btn full-width"><Link className="info-links" to="/">Continue Shopping</Link></button>             
         </div>       
     </div>
 }

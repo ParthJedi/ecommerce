@@ -107,3 +107,15 @@ a:hover {
     grid-area: content;
     padding: 3em;
 }
+
+.info-links {
+    color: #808080;
+}
+
+.checkout-btn {
+    font-size: 1.8rem;
+}
+
+.full-width {
+    width: 100%;
+}
