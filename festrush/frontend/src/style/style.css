@@ -6,7 +6,7 @@
 }
 
 html {
-    font-size: 62.5%; /* this equals 1rem = 10px */   
+    font-size: 62.5%; /* this equals 1rem = 10px */
 }
 
 body {
@@ -118,4 +118,44 @@ a:hover {
 
 .full-width {
     width: 100%;
+}
+
+/* sign in form styling */
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;    
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 33rem;
+    padding: 2rem;
+    border: 0.1rem #c0c0c0 solid;
+    border-radius: 0.5rem;
+    list-style: none;
+}
+
+.form-container li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin-top: 1rem;    
+}
+
+.form-container input {
+    padding: 1rem;
+    border: 0.1rem #c0c0c0 solid;
+    border-radius: 0.5rem;
+}
+
+.form a {
+    color: #000000;
+}
+
+.form a:hover {
+    color: #f9992e;
 }

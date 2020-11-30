@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import SiginScreen from './screens/SigninScreen';
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
             
             <ul className="navbar">
               <li><Link to="/cart/" className="btn">Cart</Link></li>
-              <li><Link to="sign-in.html" className="btn">
+              <li><Link to="/signin" className="btn">
                 <span className="material-icons">account_circle</span>&nbsp;Sign In</Link>
               </li>
             </ul>
@@ -52,7 +53,8 @@ function App() {
           <div className="content">
             <Route path="/" exact={true} component={HomeScreen} />
             <Route path="/product/:id" exact={true} component={ProductScreen} />   
-            <Route path="/cart/:id?" exact={true} component={CartScreen} />      
+            <Route path="/cart/:id?" exact={true} component={CartScreen} />
+            <Route path="/signin" component={SiginScreen} />  
           </div>
         </main>
         <footer className="footer">
