@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import {signin} from '../actions/userActions';
+import {register} from '../actions/userActions';
 
-function SiginScreen(props) {
+function RegisterScreen(props) {
 
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const userSignin = useSelector(state => state.userSignin);
-    const { loading, userInfo, error} = userSignin;
+    const [rePassword, setRePassword] = useState('');
+    const userRegister = useSelector(state => state.userRegister);
+    const { loading, userInfo, error} = userRegister;
     const dispatch = useDispatch();
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        dispatch(signin(email, password))
+        dispatch(register(name, email, password))
     };
 
     useEffect(() => {
@@ -29,11 +31,17 @@ function SiginScreen(props) {
         <form onSubmit={onSubmitHandler}>            
             <ul className="form-container">
                 <li>
-                    <h2>Sign-In</h2>
+                    <h2>Create account</h2>
                 </li>
                 <li>
                     {loading && <div>Loading..</div>}
                     {error && <div>{error.message}</div>}
+                </li>
+                <li>
+                    <label htmlFor="name">
+                        Name
+                    </label>
+                    <input type="text" name="name" id="name" onChange={(e) => setName(e.target.value)}></input>
                 </li>
                 <li>
                     <label htmlFor="email">
@@ -48,17 +56,19 @@ function SiginScreen(props) {
                     <input type="password" name="password" id="password" onChange={(e) => setPassword(e.target.value)}></input>
                 </li>
                 <li>
-                    <button className="pd-button full-width primary">Sign in</button>
+                    <label htmlFor="rePassword">
+                        Re-Enter Password
+                    </label>
+                    <input type="password" name="rePassword" id="rePassword" onChange={(e) => setRePassword(e.target.value)}></input>
                 </li>
-                <li>New to Festrush?</li>
                 <li>
-                    <Link to="/register" className="pd-button secondary text-center full-width">Create your account</Link>
+                    <button className="pd-button full-width primary">Register</button>
                 </li>
-                <li></li>
+                <li>Already have an account? <Link to="/signin">Sign-in</Link></li>
             </ul>
         </form>
     </div>
         
 }
 
-export default SiginScreen;
+export default RegisterScreen;

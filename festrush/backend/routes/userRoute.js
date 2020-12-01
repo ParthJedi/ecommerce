@@ -9,7 +9,7 @@ router.post("/signin", async (req, res) => {
             email: req.body.email,
             password: req.body.password
         });
-        if(signinUser) {
+        if(signinUser && signinUser.password == req.body.password ) {
             res.send({
                 _id: signinUser.id,
                 name: signinUser.name,
@@ -25,6 +25,34 @@ router.post("/signin", async (req, res) => {
     }
 
 });
+
+router.post("/register", async (req, res) => {
+    try {
+        console.log(">>", req)
+        const user =  new User({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        });
+        const newUser =  await user.save();
+
+        if(newUser) {
+            res.send({
+                _id: newUser.id,
+                name: newUser.name,
+                password: newUser.password,
+                email: newUser.email,
+                isAdmin: newUser.isAdmin,
+                token: getToken(newUser)
+            })
+        } else {
+            res.status(401).send({message: "Registration failed, invalid user data."});
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 
 router.get("/createadmin", async (req, res) => {
     try {

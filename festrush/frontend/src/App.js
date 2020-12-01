@@ -5,11 +5,17 @@ import React from 'react';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import SiginScreen from './screens/SigninScreen';
+import { useSelector } from 'react-redux';
+
 
 
 function App() {
+
+  const userSignin = useSelector(state=>state.userSignin);
+  const { userInfo } = userSignin;
 
   const openAsideBar = () => {
     document.querySelector('.side-bar').classList.add('open');
@@ -34,9 +40,12 @@ function App() {
             
             <ul className="navbar">
               <li><Link to="/cart/" className="btn">Cart</Link></li>
-              <li><Link to="/signin" className="btn">
+              <li>{ 
+                userInfo ? <Link to="/profile">{JSON.stringify(userInfo)}</Link>
+                :
+                <Link to="/signin" className="btn">
                 <span className="material-icons">account_circle</span>&nbsp;Sign In</Link>
-              </li>
+              }</li>
             </ul>
           </nav>
         </header>
@@ -55,6 +64,7 @@ function App() {
             <Route path="/product/:id" exact={true} component={ProductScreen} />   
             <Route path="/cart/:id?" exact={true} component={CartScreen} />
             <Route path="/signin" component={SiginScreen} />  
+            <Route path="/register" component={RegisterScreen} />
           </div>
         </main>
         <footer className="footer">
