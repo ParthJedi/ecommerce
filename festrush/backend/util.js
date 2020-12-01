@@ -1,4 +1,4 @@
-import { config } from 'dotenv/types';
+import { config } from 'dotenv';
 import jwt, { decode } from 'jsonwebtoken';
 
 const getToken = (user) => {
