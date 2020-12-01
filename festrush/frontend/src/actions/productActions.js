@@ -1,6 +1,6 @@
 import axios from 'axios';
-const { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, 
-    PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS } = require("../constants/productConstants")
+const { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST,
+        PRODUCT_DETAILS_SUCCESS, PRODUCT_SAVE, PRODUCT_SAVE_ERROR, PRODUCT_SAVE_SUCCESS } = require("../constants/productConstants");
 
 
 const listProdcuts = () => async (dispatch) => {
@@ -23,6 +23,27 @@ const detailsOfProduct = (productId) => async (dispatch) => {
     } catch (error) {
         dispatch({ type: PRODUCT_DETAILS_FAIL, payload: error.message })
     }    
+};
+
+const saveProduct = (product) => async (dispatch, getState) => {
+    try {
+        dispatch({type: PRODUCT_SAVE, payload: product});
+        const {userSignin: {userInfo}} = getState();
+        const {data} = await axios.post('/api/products', product, {
+            headers: {
+                'Authorization': 'Bearer ' + userInfo.token
+            }
+        });
+        dispatch({
+            type: PRODUCT_SAVE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_SAVE_ERROR,
+            payload: error.message
+        })
+    }
 }
 
-export { listProdcuts, detailsOfProduct };
+export { listProdcuts, detailsOfProduct, saveProduct };

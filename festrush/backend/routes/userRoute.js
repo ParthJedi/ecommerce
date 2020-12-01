@@ -1,9 +1,9 @@
 import express from "express";
 import User from "../models/userModel";
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.post("/signin", async (req, res) => {
+userRouter.post("/signin", async (req, res) => {
     try {
         const signinUser = await User.findOne({
             email: req.body.email,
@@ -21,12 +21,12 @@ router.post("/signin", async (req, res) => {
             res.status(401).send({message: "Invalid Username or Password."});
         }
     } catch (error) {
-        
+        return console.log(error);
     }
 
 });
 
-router.post("/register", async (req, res) => {
+userRouter.post("/register", async (req, res) => {
     try {
         console.log(">>", req)
         const user =  new User({
@@ -54,7 +54,7 @@ router.post("/register", async (req, res) => {
 });
 
 
-router.get("/createadmin", async (req, res) => {
+userRouter.get("/createadmin", async (req, res) => {
     try {
             const user = new User({
             name: 'Parth Jedi',
@@ -70,4 +70,4 @@ router.get("/createadmin", async (req, res) => {
     }
 });
 
-export default router;
+export default userRouter;

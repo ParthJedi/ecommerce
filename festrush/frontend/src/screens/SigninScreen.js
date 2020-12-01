@@ -5,6 +5,7 @@ import {signin} from '../actions/userActions';
 
 function SiginScreen(props) {
 
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const userSignin = useSelector(state => state.userSignin);

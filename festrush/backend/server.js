@@ -3,7 +3,8 @@ import data from './data';
 import dotenv from 'dotenv';
 import config from './config';
 import mongoose from 'mongoose';
-import userRoute from './routes/userRoute';
+import userRouter from './routes/userRoute';
+import productRouter from './routes/productRoute';
 import bodyParser from 'body-parser';
 dotenv.config();
 
@@ -15,25 +16,11 @@ mongoose.connect(mongodbUrl,{
 }).then(() => console.log("MogoDB connected")).catch(error => console.log(error));
 
 const app = express();
-
 app.use(bodyParser.json());
 
 // routes to handle
-app.use("/api/users", userRoute)
-
-app.get('/api/products', (req, res) => {
-    res.send(data.products);
-});
-
-app.get('/api/product/:id', (req, res) => {
-    const productId = req.params.id;
-    const product = data.products.find(i => String(i._id) == productId);
-    if(product) {
-        res.send(product);
-    } else {
-        res.status(404).send({message: 'Product Not Found'});
-    }    
-})
+app.use("/api/users", userRouter);
+app.use("/api/products", productRouter);
 
 app.listen(5000, () => {
     console.log("Server started at http://localhost:5000");
