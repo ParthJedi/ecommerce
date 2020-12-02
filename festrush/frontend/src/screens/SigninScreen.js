@@ -11,20 +11,21 @@ function SiginScreen(props) {
     const userSignin = useSelector(state => state.userSignin);
     const { loading, userInfo, error} = userSignin;
     const dispatch = useDispatch();
+    const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
+
+    useEffect(() => {
+        if(userInfo) {
+            props.history.push(redirect)
+        }
+        return () => {
+            //
+        }
+    }, [userInfo]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
         dispatch(signin(email, password))
     };
-
-    useEffect(() => {
-        if(userInfo) {
-            props.history.push('/')
-        }
-        return () => {
-            //
-        }
-    }, [userInfo])
 
     return <div className="form">
         <form onSubmit={onSubmitHandler}>            
@@ -53,7 +54,7 @@ function SiginScreen(props) {
                 </li>
                 <li>New to Festrush?</li>
                 <li>
-                    <Link to="/register" className="pd-button secondary text-center full-width">Create your account</Link>
+                    <Link to={redirect === '/' ? "register" : "register?redirect=" + redirect} className="pd-button secondary text-center full-width">Create your account</Link>
                 </li>
                 <li></li>
             </ul>

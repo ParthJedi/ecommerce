@@ -6,9 +6,12 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import ShippingScreen from './screens/ShippingScreen';
+import PaymentScreen from './screens/PaymentScreen';
 import CreateProductScreen from './screens/CreateProductScreen';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import SiginScreen from './screens/SigninScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import { useSelector } from 'react-redux';
 
 
@@ -67,6 +70,9 @@ function App() {
             <Route path="/signin" component={SiginScreen} />  
             <Route path="/register" component={RegisterScreen} />
             <Route path="/products" component={CreateProductScreen} />
+            <Route path="/shipping" component={ShippingScreen} />
+            <Route path="/payment" component={PaymentScreen} />
+            <Route path="/placeorder" component={PlaceOrderScreen} />
           </div>
         </main>
         <footer className="footer">

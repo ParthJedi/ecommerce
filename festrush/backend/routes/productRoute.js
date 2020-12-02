@@ -1,5 +1,7 @@
+import e from "express";
 import express from "express";
 import Product from "../models/productModel";
+import { isAdmin, isAuth } from "../util";
 
 const productRouter = express.Router();
 
@@ -8,7 +10,17 @@ productRouter.get('/', async (req, res) => {
     res.send(products);
 });
 
-productRouter.post('/', async (req, res) => {
+
+productRouter.get('/:id', async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+        res.send(product);
+    } else {
+        res.status(404).send({message: "Product Not Found."})
+    }    
+});
+
+productRouter.post('/', isAuth, isAdmin, async (req, res) => {
     const product = new Product({
         name: req.body.name,
         brand: req.body.brand,
@@ -28,7 +40,7 @@ productRouter.post('/', async (req, res) => {
     return res.status(500).send({message: "Error in Creating Product."})
 });
 
-productRouter.put('/:id', async (req, res) => {
+productRouter.put('/:id', isAuth, isAdmin, async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId);
     if(product) {
@@ -51,7 +63,7 @@ productRouter.put('/:id', async (req, res) => {
     } 
 });
 
-productRouter.delete('/:id', async (req, res) => {
+productRouter.delete('/:id', isAuth, isAdmin,async (req, res) => {
     const deletedProduct = await Product.findById(req.params.id);
     if (deletedProduct) {
         await deletedProduct.remove();

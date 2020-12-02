@@ -21,7 +21,7 @@ const isAuth = (req, res, next) => {
             if(error) {
                 return res.status(401).send({message: 'Invlaid Token'})
             }
-            req.user = token;
+            req.user = decode;
             next();
             return;
         })

@@ -114,7 +114,7 @@ function CreateProductScreen(props) {
                     </form>
                 </div> }                
                 <div className="product-list">
-                    <table>
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -125,13 +125,14 @@ function CreateProductScreen(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            { products.map(product => {( <tr>
+                            { products.map(product => {( <tr key={product._id}>
                                     <td>{product._id}</td>
                                     <td>{product.name}</td>
                                     <td>{product.brand}</td>
                                     <td>{product.price}</td>
                                     <td>
                                         <button className="btn-pd" onClick={() => openModal({product})}>Edit</button>
+                                        {' '}
                                         <button className="btn-pd" onClick={() => deleteHandler(product._id)}>Delete</button>
                                     </td>
                                 </tr> )})}

@@ -12,6 +12,7 @@ function RegisterScreen(props) {
     const userRegister = useSelector(state => state.userRegister);
     const { loading, userInfo, error} = userRegister;
     const dispatch = useDispatch();
+    const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -64,7 +65,9 @@ function RegisterScreen(props) {
                 <li>
                     <button className="pd-button full-width primary">Register</button>
                 </li>
-                <li>Already have an account? <Link to="/signin">Sign-in</Link></li>
+                <li>Already have an account? 
+                    <Link to={redirect === '/' ? "signin" : "signin?redirect=" + redirect} className="pd-button secondary text-center full-width">Sign-in</Link>
+                </li>
             </ul>
         </form>
     </div>
