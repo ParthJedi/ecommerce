@@ -1,4 +1,4 @@
-festrush/static_template/images/
 node_modules/
 frontend/node_modules/
 festrush/frontend/public/images/
+festrush/.env
