@@ -17,9 +17,9 @@ const mapDispatchToProps = dispatch => ({
     toggleCartView: () => dispatch(toggleCartView())
 })
 
-const mapStateTProps = createStructuredSelector({
+const mapStateToProps = createStructuredSelector({
     itemCount: selectCartItemsCount
  }) 
 
-export default connect(mapStateTProps, mapDispatchToProps)(CartIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
 

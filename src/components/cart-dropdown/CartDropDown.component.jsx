@@ -30,8 +30,8 @@ import { withRouter } from 'react-router-dom';
      </div>
  )
 
- const mapStateTProps = createStructuredSelector ({
+ const mapStateToProps = createStructuredSelector ({
     cartItems: selectCartItems
  })
 
- export default withRouter(connect(mapStateTProps)(CartDropDown));
+ export default withRouter(connect(mapStateToProps)(CartDropDown));

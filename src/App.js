@@ -65,7 +65,7 @@ class App extends React.Component {
   };
 }
 
-const mapStateTProps = state => ({
+const mapStateToProps = state => ({
   currentUser: currentUserSelector(state),
   collectionsArray: selectCollectionsForPreview(state)
 });
@@ -74,4 +74,4 @@ const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
-export default connect(mapStateTProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
