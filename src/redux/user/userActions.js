@@ -19,7 +19,7 @@ export const SigninSuccess = (user) => ({
     payload: user
 });
 
-export const SigniFail = (error) => ({
+export const SigninFail = (error) => ({
     type: USER_ACTION_TYPES.SIGNIN_FAIL,
     payload: error
 });
