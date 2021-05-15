@@ -5,12 +5,16 @@ import { auth, googleProvider, createUserProfileDocument} from '../../firebase/f
 
 // worker sagas
 export function* getSnapshotFromUserAuth(userAuth) {
+    try {
         const userRef = yield call(createUserProfileDocument, userAuth);
         const userSnapshot = yield userRef.get();
         yield put(SigninSuccess({
             id: userSnapshot.id,
             ...userSnapshot.data()
         }));    
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export function* signInWithGoogle() {
