@@ -5,23 +5,18 @@ import { auth, googleProvider, createUserProfileDocument} from '../../firebase/f
 
 // worker sagas
 export function* getSnapshotFromUserAuth(userAuth) {
-    try {
         const userRef = yield call(createUserProfileDocument, userAuth);
         const userSnapshot = yield userRef.get();
         yield put(SigninSuccess({
             id: userSnapshot.id,
             ...userSnapshot.data()
-        }));
-    } catch (error) {
-        console.log(error);
-    }
-    
+        }));    
 }
 
 export function* signInWithGoogle() {
     try {
         const {user} = yield auth.signInWithPopup(googleProvider);
-        getSnapshotFromUserAuth(user);
+        yield call(getSnapshotFromUserAuth, user);
     } catch(error) {
         yield put(SigniFail(error));
     }
@@ -30,7 +25,7 @@ export function* signInWithGoogle() {
 export function* signInWithEmail({payload: { email, password }}) {
     try {
         const { user } = yield auth.signInWithEmailAndPassword(email, password);
-        getSnapshotFromUserAuth(user);
+        yield call(getSnapshotFromUserAuth, user);
     } catch (error) {
         yield put(SigniFail(error));
     }
